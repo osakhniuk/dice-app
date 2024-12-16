@@ -5,17 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dice App</title>
     <link rel="stylesheet" href="style.css" />
-    <!-- Підключення Telegram WebApp -->
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
   </head>
   <body>
     <div class="container">
       <h1>DICE APP</h1>
+      <h3>мінізастосунок</h3>
 
       <div class="result">
         <h2>RESULT</h2>
         <p>DICE 1: <span id="dice1-result">-</span></p>
         <p>DICE 2: <span id="dice2-result">-</span></p>
+      </div>
+      <!-- Новий блок для інформації про користувача -->
+      <div class="user-info">
+        <p id="user-info">Loading user info...</p>
       </div>
 
       <div class="dice-container">
@@ -26,7 +30,7 @@
       <button id="roll-btn">ROLL</button>
     </div>
 
-    <!-- Overlay для "CONGRATULATIONS!" та конфеті -->
+    <!-- Контейнер для конфеті та вітального тексту -->
     <div id="congrats-overlay" class="hidden">
       <div id="congrats-message">CONGRATULATIONS!</div>
       <div id="confetti-container"></div>

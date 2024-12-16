@@ -107,17 +107,17 @@ button:disabled {
 }
 
 #congrats-message {
-  font-size: 10vw; /* Адаптивний розмір шрифту */
+  font-size: calc(10vw - 20px); /* 10% ширини вікна мінус відступи */
   font-weight: bold;
   color: #6a0dad;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
   position: absolute;
   z-index: 2;
   text-align: center;
-  white-space: nowrap; /* Текст залишається в одну лінію */
-  padding: 0 10px; /* Відступи по 10 пікселів зліва та справа */
-  box-sizing: border-box; /* Враховує padding у ширину */
-  max-width: 100%; /* Забезпечує, що текст не виходить за межі екрану */
+  box-sizing: border-box;
+  max-width: calc(100% - 20px); /* Ширина з урахуванням 10px відступів з обох сторін */
+  white-space: nowrap; /* Запобігає переносу тексту */
+  overflow: hidden; /* Ховає будь-що, що виходить за межі */
 }
 
 #confetti-container {

@@ -79,21 +79,24 @@ document.addEventListener("DOMContentLoaded", () => {
     return colors[Math.floor(Math.random() * colors.length)];
   }
 
-  rollBtn.addEventListener("click", async () => {
-    rollBtn.disabled = true;
-    dice1Result.textContent = "";
-    dice2Result.textContent = "";
+rollBtn.addEventListener("click", async () => {
+  rollBtn.disabled = true;
+  dice1Result.textContent = "";
+  dice2Result.textContent = "";
 
-    const [finalDice1, finalDice2] = await rollDiceAnimation(1000);
+  const [finalDice1, finalDice2] = await rollDiceAnimation(1000);
 
-    renderDice(dice1Div, finalDice1);
-    renderDice(dice2Div, finalDice2);
+  renderDice(dice1Div, finalDice1);
+  renderDice(dice2Div, finalDice2);
 
-    dice1Result.textContent = finalDice1;
-    dice2Result.textContent = finalDice2;
+  dice1Result.textContent = finalDice1;
+  dice2Result.textContent = finalDice2;
 
-    showCongratulations();
-    }
+  // Показуємо "CONGRATULATIONS!" для кожного кидка
+  showCongratulations();
+
+  rollBtn.disabled = false;
+});
 
     rollBtn.disabled = false;
   });

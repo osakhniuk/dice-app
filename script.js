@@ -22,20 +22,6 @@ document.addEventListener("DOMContentLoaded", () => {
     userInfoElement.textContent = "Welcome, guest!";
   }
 
-  // Показ кнопки "VIBRATE" тільки на мобільних пристроях
-  if (navigator.vibrate || telegram.platform === "ios" || telegram.platform === "android") {
-    vibrateBtn.classList.remove("hidden");
-  }
-
-  // Обробник кнопки для вібрації
-  vibrateBtn.addEventListener("click", () => {
-    if (navigator.vibrate) {
-      navigator.vibrate(20000); // Вібрація 200 мс для браузерів
-    } else if (telegram.HapticFeedback) {
-      telegram.HapticFeedback.impactOccurred("medium"); // Вібрація через Telegram API
-    }
-  });
-
   // Шаблони для кубиків (позиції крапок на сітці 3x3)
   const dicePatterns = {
     1: [4],
@@ -48,7 +34,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Функція для рендерингу кубика
   function renderDice(diceDiv, value) {
-    diceDiv.innerHTML = ""; // Очищаємо попередні крапки
+    diceDiv.innerHTML = "";
     for (let i = 0; i < 9; i++) {
       const dot = document.createElement("div");
       dot.style.backgroundColor = dicePatterns[value].includes(i)
@@ -121,23 +107,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Обробник кнопки "ROLL"
   rollBtn.addEventListener("click", async () => {
-    rollBtn.disabled = true; // Відключаємо кнопку під час анімації
+    rollBtn.disabled = true;
     dice1Result.textContent = "";
     dice2Result.textContent = "";
 
-    // Анімація кубиків протягом 1 секунди
     const [finalDice1, finalDice2] = await rollDiceAnimation(1000);
 
-    // Показуємо фінальні значення кубиків
     renderDice(dice1Div, finalDice1);
     renderDice(dice2Div, finalDice2);
 
     dice1Result.textContent = finalDice1;
     dice2Result.textContent = finalDice2;
 
-    // Завжди показуємо "CONGRATULATIONS!"
     showCongratulations();
-
-    rollBtn.disabled = false; // Увімкнути кнопку знову
+    rollBtn.disabled = false;
   });
+
+  // Логіка вібрації при трясканні пристрою
+  if (window.DeviceMotionEvent) {
+    let lastShakeTime = Date.now();
+
+    window.addEventListener("devicemotion", (event) => {
+      const acceleration = event.accelerationIncludingGravity;
+
+      if (!acceleration) return;
+
+      const { x, y, z } = acceleration;
+      const totalAcceleration = Math.sqrt(x * x + y * y + z * z);
+
+      if (totalAcceleration > 20) {
+        const now = Date.now();
+        if (now - lastShakeTime > 1000) {
+          lastShakeTime = now;
+
+          if (telegram.HapticFeedback) {
+            telegram.HapticFeedback.impactOccurred("medium");
+          } else if (navigator.vibrate) {
+            navigator.vibrate(200);
+          }
+        }
+      }
+    });
+  }
 });

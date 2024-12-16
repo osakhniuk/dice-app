@@ -157,4 +157,24 @@
     color: #333;
     font-weight: bold;
   }
+.hidden {
+  display: none;
+}
+
+#vibrate-btn {
+  background-color: #4caf50;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  border: none;
+  padding: 10px 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+#vibrate-btn:hover {
+  background-color: #45a049;
+}
+
   

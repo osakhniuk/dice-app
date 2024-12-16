@@ -92,8 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     dice1Result.textContent = finalDice1;
     dice2Result.textContent = finalDice2;
 
-    if (finalDice1 === 6 && finalDice2 === 6) {
-      showCongratulations();
+    showCongratulations();
     }
 
     rollBtn.disabled = false;

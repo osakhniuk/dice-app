@@ -1,141 +1,160 @@
 /* Скидання стилів */
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-body {
-  font-family: Arial, sans-serif;
-  background-color: #f8f8f8;
-  text-align: center;
-  color: #333;
-}
-
-.container {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 20px;
-}
-
-h1 {
-  font-size: 2rem;
-  font-weight: bold;
-  margin-bottom: 10px;
-}
-
-h3 {
-  color: gray;
-  margin-bottom: 20px;
-}
-
-.result h2 {
-  font-size: 1.5rem;
-  margin-bottom: 10px;
-}
-
-.result p {
-  font-size: 1.2rem;
-  margin: 5px 0;
-}
-
-.dice-container {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  margin: 20px 0;
-}
-
-.dice {
-  width: 100px;
-  height: 100px;
-  border: 3px solid black;
-  background-color: white;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  padding: 5px;
-  gap: 5px;
-  box-sizing: border-box;
-}
-
-.dice div {
-  border-radius: 50%;
-  background-color: transparent;
-}
-
-button {
-  background-color: #f37053;
-  color: white;
-  font-size: 1.5rem;
-  font-weight: bold;
-  border: none;
-  padding: 10px 30px;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.2s ease;
-}
-
-button:hover {
-  background-color: #ff5a36;
-}
-
-button:active {
-  transform: scale(0.95);
-}
-
-button:disabled {
-  background-color: #ccc;
-  cursor: not-allowed;
-}
-
-#congrats-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(255, 255, 255, 0.9);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 1000;
-}
-
-#congrats-overlay.show {
-  display: flex;
-}
-
-#congrats-message {
-  font-size: calc(10vw - 20px); /* 10% ширини вікна мінус відступи */
-  font-weight: bold;
-  color: #6a0dad;
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-  position: absolute;
-  z-index: 2;
-  text-align: center;
-  box-sizing: border-box;
-  max-width: calc(100% - 20px); /* Ширина з урахуванням 10px відступів з обох сторін */
-  white-space: nowrap; /* Запобігає переносу тексту */
-  overflow: hidden; /* Ховає будь-що, що виходить за межі */
-}
-
-#confetti-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-}
-
-@keyframes fall {
-  0% {
-    transform: translateY(0) rotate(0deg);
-    opacity: 1;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
   }
-  100% {
-    transform: translateY(100vh) rotate(360deg);
-    opacity: 0;
+  
+  body {
+    font-family: Arial, sans-serif;
+    background-color: #f8f8f8;
+    text-align: center;
+    color: #333;
   }
-}
+  
+  .container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  
+  h3 {
+    color: gray;
+    margin-bottom: 20px;
+  }
+  
+  .result h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+  }
+  
+  .result p {
+    font-size: 1.2rem;
+    margin: 5px 0;
+  }
+  
+  .dice-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+  }
+  
+  .dice {
+    width: 100px;
+    height: 100px;
+    border: 3px solid black;
+    background-color: white;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    padding: 5px;
+    gap: 5px;
+    box-sizing: border-box;
+  }
+  
+  .dice div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: transparent;
+  }
+  
+  button {
+    background-color: #f37053;
+    color: white;
+    font-size: 1.5rem;
+    font-weight: bold;
+    border: none;
+    padding: 10px 30px;
+    border-radius: 15px;
+    cursor: pointer;
+    outline: none;
+    margin-top: 20px;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  }
+  
+  button:hover {
+    background-color: #ff5a36;
+  }
+  
+  button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  button:active {
+    transform: scale(0.95);
+  }
+  
+  /* Схований overlay за замовчуванням */
+  #congrats-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    display: none; /* Початково сховано */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    overflow: hidden;
+  }
+  
+  #congrats-overlay.show {
+    display: flex; /* Показати overlay при додаванні класу .show */
+  }
+  
+  #congrats-message {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #6a0dad;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+    position: absolute;
+    z-index: 2;
+  }
+  
+  #confetti-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+  }
+  
+  /* Анімація для конфеті */
+  @keyframes fall {
+    0% {
+      transform: translateY(0) rotate(0deg);
+      opacity: 1;
+    }
+    100% {
+      transform: translateY(100vh) rotate(360deg);
+      opacity: 0;
+    }
+  }
+  
+  /* Стилі для конфеті */
+  #confetti-container div {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    animation: fall linear infinite;
+  }
+  .user-info {
+    margin-top: 10px;
+    font-size: 1rem;
+    color: #333;
+    font-weight: bold;
+  }
+  

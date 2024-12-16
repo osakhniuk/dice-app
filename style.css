@@ -107,7 +107,7 @@ button:disabled {
 }
 
 #congrats-message {
-  font-size: 10vw; /* Розмір шрифту залежить від ширини вікна */
+  font-size: 10vw; /* Адаптивний розмір шрифту */
   font-weight: bold;
   color: #6a0dad;
   text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
@@ -115,6 +115,9 @@ button:disabled {
   z-index: 2;
   text-align: center;
   white-space: nowrap; /* Текст залишається в одну лінію */
+  padding: 0 10px; /* Відступи по 10 пікселів зліва та справа */
+  box-sizing: border-box; /* Враховує padding у ширину */
+  max-width: 100%; /* Забезпечує, що текст не виходить за межі екрану */
 }
 
 #confetti-container {

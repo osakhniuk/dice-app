@@ -6,7 +6,8 @@ document.addEventListener("DOMContentLoaded", () => {
   const dice2Result = document.getElementById("dice2-result");
   const congratsOverlay = document.getElementById("congrats-overlay");
   const confettiContainer = document.getElementById("confetti-container");
-  const userInfoElement = document.getElementById("user-info"); // Блок для виводу користувача
+  const userInfoElement = document.getElementById("user-info");
+  const vibrateBtn = document.getElementById("vibrate-btn"); // Кнопка для вібрації
 
   // Ініціалізація Telegram Web App
   const telegram = window.Telegram.WebApp;
@@ -15,14 +16,26 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Виведення інформації про користувача
   const user = telegram.initDataUnsafe.user;
-
   if (user) {
-    // Відображаємо ім'я користувача
     userInfoElement.textContent = `Welcome, ${user.first_name} ${user.last_name || ""}`;
   } else {
-    // Якщо немає даних
     userInfoElement.textContent = "Welcome, guest!";
   }
+
+  // Показ кнопки "VIBRATE" тільки на мобільних пристроях
+  if (navigator.vibrate || telegram.platform === "ios" || telegram.platform === "android") {
+    vibrateBtn.classList.remove("hidden");
+  }
+
+  // Обробник кнопки для вібрації
+  vibrateBtn.addEventListener("click", () => {
+    if (navigator.vibrate) {
+      navigator.vibrate(200); // Вібрація 200 мс для браузерів
+    } else if (telegram.HapticFeedback) {
+      telegram.HapticFeedback.impactOccurred("medium"); // Вібрація через Telegram API
+    }
+    console.log("Вібрація активована!");
+  });
 
   // Шаблони для кубиків (позиції крапок на сітці 3x3)
   const dicePatterns = {

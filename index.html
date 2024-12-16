@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dice App</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="container">
+      <h1>DICE APP</h1>
+      <h3>мінізастосунок</h3>
+
+      <div class="result">
+        <h2>RESULT</h2>
+        <p>DICE 1: <span id="dice1-result">-</span></p>
+        <p>DICE 2: <span id="dice2-result">-</span></p>
+      </div>
+
+      <div class="dice-container">
+        <div id="dice1" class="dice"></div>
+        <div id="dice2" class="dice"></div>
+      </div>
+
+      <button id="roll-btn">ROLL</button>
+    </div>
+
+    <!-- Контейнер для конфеті та вітального тексту -->
+    <div id="congrats-overlay" class="hidden">
+      <div id="congrats-message">CONGRATULATIONS!</div>
+      <div id="confetti-container"></div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>

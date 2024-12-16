@@ -30,7 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Обробник кнопки для вібрації
   vibrateBtn.addEventListener("click", () => {
     if (navigator.vibrate) {
-      navigator.vibrate(200); // Вібрація 200 мс для браузерів
+      navigator.vibrate(2000); // Вібрація 200 мс для браузерів
     } else if (telegram.HapticFeedback) {
       telegram.HapticFeedback.impactOccurred("medium"); // Вібрація через Telegram API
     }

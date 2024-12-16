@@ -88,7 +88,7 @@ document.addEventListener("DOMContentLoaded", () => {
       dice1Result.textContent = "";
       dice2Result.textContent = "";
   
-      const [finalDice1, finalDice2] = await rollDiceAnimation(100);
+      const [finalDice1, finalDice2] = await rollDiceAnimation(400);
   
       renderDice(dice1Div, finalDice1);
       renderDice(dice2Div, finalDice2);
@@ -96,9 +96,9 @@ document.addEventListener("DOMContentLoaded", () => {
       dice1Result.textContent = finalDice1;
       dice2Result.textContent = finalDice2;
   
-      
-      showCongratulations();
-      
+      if (finalDice1 === 6 && finalDice2 === 6) {
+          showCongratulations();
+      }
   
       rollBtn.disabled = false;
     });
